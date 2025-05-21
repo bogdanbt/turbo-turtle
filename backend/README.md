@@ -1,0 +1,71 @@
+🐢 Typing Text API
+This is a simple API that helps save and get texts for a typing speed game.
+
+What is this?
+This API is used to:
+
+    -Save new texts that players will type
+    -Get texts by ID
+    -Get texts randomly
+    -Delete texts
+
+Add a New Text
+
+Method: POST
+URL: /api/text
+Send this in the body:
+{
+"content": "for (let i = 0; i < 5; i++) { console.log(i); }",
+"language": "javascript",
+"difficulty": "beginner",
+"recommended_time": 60,
+"title": "JS For Loop"
+}
+
+You get this back:
+{
+"id": 1
+}
+
+Get Text by ID
+Method: GET
+URL: /api/text/:id
+
+Example: GET /api/text/1 — gets the text with ID 1
+
+Response:
+{
+"id": 1,
+"content": "for (let i = 0; i < 5; i++) { console.log(i); }",
+"language": "javascript",
+"difficulty": "beginner",
+"recommended_time": 60,
+"title": "JS For Loop"
+}
+
+Get Random Text
+Method: GET
+URL: /api/text/random?language=...&difficulty=...
+
+Example: GET /api/text/random?language=javascript&difficulty=beginner
+Response:
+{
+"id": 1,
+"content": "for (let i = 0; i < 5; i++) { console.log(i); }",
+"language": "javascript",
+"difficulty": "beginner",
+"recommended_time": 60,
+"title": "JS For Loop"
+}
+
+Delete Text by ID
+Method: DELETE
+URL: /api/text/:id
+
+This removes a text forever from the database.
+Example: DELETE /api/text/1
+
+Response:
+{
+"success": true
+}
