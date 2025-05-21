@@ -1,4 +1,3 @@
-
 const snippets = [
   `console.log("Hello World");`,
   `for (let i = 0; i < 10; i++) { console.log(i); }`,
@@ -11,6 +10,8 @@ const snippets = [
 let currentSnippet = "";
 let timeLeft = 60;
 let timerId = null;
+let selectedTime = null;
+let testActive = false;
 
 const snippetBox = document.createElement("div");
 snippetBox.className = "snippet-box";
@@ -42,6 +43,7 @@ function loadNewSnippet() {
 
 function renderSnippet(userInput) {
   snippetBox.innerHTML = "";
+  
   for (let i = 0; i < currentSnippet.length; i++) {
     const span = document.createElement("span");
     span.textContent = currentSnippet[i];
@@ -61,13 +63,22 @@ function renderSnippet(userInput) {
   }
 }
 
-
-function startTest(duration) {
+function prepareTest(duration) {
+  selectedTime = duration;
   timeLeft = duration;
   timerDisplay.textContent = timeLeft;
   loadNewSnippet();
   textarea.disabled = false;
   textarea.focus();
+  
+  testActive = false;
+  
+}
+
+function startTest() {
+  if (testActive || !selectedTime) return;
+  
+  testActive = true;
   clearInterval(timerId);
   timerId = setInterval(() => {
     timeLeft--;
@@ -80,31 +91,57 @@ function startTest(duration) {
 }
 
 function endTest() {
+  testActive = false;
   textarea.disabled = true;
   const typed = textarea.value;
+  
   const correctChars = typed.split("").filter((char, i) => char === currentSnippet[i]).length;
-  const accuracy = Math.round((correctChars / currentSnippet.length) * 100);
-  const words = typed.trim().split(/\s+/).length;
-  const cpm = typed.length;
-  const wpm = Math.round((words / (timeLeft === 0 ? 1 : timeLeft)) * 60);
+  
+  const elapsedTime = selectedTime - timeLeft;
+  
+  let accuracy = 0;
+  if (typed.length > 0) {
+    accuracy = Math.round((correctChars / typed.length) * 100);
+  }
+  
+  let wpm = 0;
+  let cpm = 0;
+  
+  if (elapsedTime > 0) {
+    const minutes = elapsedTime / 60;
+    const words = typed.trim().split(/\s+/).length;
+    wpm = Math.round(words / minutes);
+    cpm = Math.round(typed.length / minutes);
+  }
 
-  accuracyDisplay.textContent = accuracy + "%";
+  accuracyDisplay.textContent = accuracy;
   wpmDisplay.textContent = wpm;
   cpmDisplay.textContent = cpm;
+  
+  timerDisplay.textContent = "Finished";
 
-  setTimeout(() => {
-    alert(`Results:\nWPM: ${wpm}\nCPM: ${cpm}\nAccuracy: ${accuracy}%`);
-  }, 100);
+  clearInterval(timerId);
+  
+  snippetBox.innerHTML = "";
+  textarea.value = "";
 }
 
 timerButtons.forEach(button => {
   button.addEventListener("click", () => {
-    startTest(parseInt(button.getAttribute("data-time")));
+    prepareTest(parseInt(button.getAttribute("data-time"))); 
   });
 });
 
-textarea.addEventListener("input", () => {
+textarea.addEventListener("input", (e) => {
+  if (!testActive && e.target.value.length === 1 && selectedTime) {
+    startTest();
+  }
   renderSnippet(textarea.value);
+  
+  if (testActive && e.target.value === currentSnippet) {
+    clearInterval(timerId);
+    endTest();
+  }
 });
 
 textarea.addEventListener("keydown", e => {
@@ -113,3 +150,5 @@ textarea.addEventListener("keydown", e => {
     loadNewSnippet();
   }
 });
+
+snippetBox.innerHTML = "";

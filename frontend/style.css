@@ -81,12 +81,12 @@ body {
 }
 
 .timer .time {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
-.timer .label {
+/* .timer .label {
   font-size: 0.9rem;
-}
+} */
 
 .stat-box {
   padding: 1rem 1.2rem;
