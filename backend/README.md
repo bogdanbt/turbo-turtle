@@ -76,3 +76,54 @@ Response:
 {
 "success": true
 }
+
+---
+
+Register a New User
+Method: POST
+URL: https://turbo-turtle.onrender.com/api/auth/register
+
+Body:
+{
+"username": "testuser",
+"email": "test@example.com",
+"password": "123456"
+}
+
+Response:
+{
+"id": 1,
+"message": "User registered"
+}
+
+---
+
+Login
+
+Method: POST
+URL: https://turbo-turtle.onrender.com/api/auth/login
+
+Body:
+{
+"email": "test@example.com",
+"password": "123456"
+}
+Response:
+{
+"token": "your_jwt_token_here"
+}
+
+---
+
+Get Current User Profile
+Method: GET
+URL: https://turbo-turtle.onrender.com/api/auth/me
+
+Header:
+Authorization: Bearer your_token_here
+Response:
+{
+"id": 1,
+"username": "testuser",
+"email": "test@example.com"
+}
