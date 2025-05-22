@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -26,7 +27,6 @@
       <div class="stats">
         <div class="timer">
           <span class="time">Select time</span>
-          <!--<span class="label">limit</span>-->
         </div>
         <div class="timer-options">
           <button class="timer-btn" data-time="15">15s</button>
@@ -36,15 +36,15 @@
 
         <div class="stat-box">
           <span class="stat-value">0</span>
-          <span class="stat-label">words/min</span>
-        </div>
-        <div class="stat-box">
-          <span class="stat-value">0</span>
-          <span class="stat-label">chars/min</span>
+          <span class="stat-label">chars/sec</span>
         </div>
         <div class="stat-box">
           <span class="stat-value">0</span>
           <span class="stat-label">% accuracy</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-value">0</span>
+          <span class="stat-label">consistency</span>
         </div>
       </div>
 
@@ -54,6 +54,14 @@
       ></textarea>
     </section>
 
+    <div class="results-container" style="display: none;">
+      <div class="chart-container">
+        <canvas id="typingChart" width="350" height="350"></canvas>
+      </div>
+      <div class="feedback-box">
+      </div>
+    </div>
+
     <footer class="footer-guides">
       <div class="guide-keys">
         <span><kbd>tab</kbd> + <kbd>enter</kbd> – restart test</span>
@@ -62,6 +70,8 @@
         Built by the team of Omer, Ablet, Aida and Bohdan
       </p>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
