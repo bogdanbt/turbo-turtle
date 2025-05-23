@@ -34,7 +34,7 @@ document.body.querySelector(".panel").insertBefore(snippetBox, document.querySel
 const textarea = document.querySelector(".typing-input");
 const timerDisplay = document.querySelector(".time");
 const timerButtons = document.querySelectorAll(".timer-btn");
-const charSecDisplay = document.querySelectorAll(".stat-box .stat-value")[0];
+const charMinDisplay = document.querySelectorAll(".stat-box .stat-value")[0];
 const accuracyDisplay = document.querySelectorAll(".stat-box .stat-value")[1];
 const consistencyDisplay = document.querySelectorAll(".stat-box .stat-value")[2];
 
@@ -90,7 +90,7 @@ function prepareTest(duration) {
   textarea.disabled = false;
   textarea.focus();
 
-  charSecDisplay.textContent = "0";
+  charMinDisplay.textContent = "0";
   accuracyDisplay.textContent = "0";
   consistencyDisplay.textContent = "0";
 
@@ -103,17 +103,23 @@ function prepareTest(duration) {
   snippetBox.style.display = "block";
 }
 
+let testStartTime = null;
+
 function startTest() {
   if (testActive || !selectedTime) return;
 
   testActive = true;
+  testStartTime = Date.now();
   clearInterval(timerId);
-  charTimeline = [0];
+  charTimeline = [];
 
   timerId = setInterval(() => {
     timeLeft--;
     timerDisplay.textContent = timeLeft;
-    charTimeline.push(textarea.value.length);
+    
+    // Gerçek geçen süreyi hesapla
+    const elapsedSeconds = Math.floor((Date.now() - testStartTime) / 1000);
+    charTimeline[elapsedSeconds] = textarea.value.length;
 
     if (timeLeft <= 0) {
       clearInterval(timerId);
@@ -141,8 +147,13 @@ function endTest() {
   }
 
   const consistency = calculateConsistency(typed);
+  
+  let cpm = 0;
+  if(elapsedTime>0){
+    cpm = Math.round((typed.length / elapsedTime) * 60);
+  }
 
-  charSecDisplay.textContent = charPerSec;
+  charMinDisplay.textContent = cpm;
   accuracyDisplay.textContent = accuracy;
   consistencyDisplay.textContent = consistency;
   timerDisplay.textContent = "Finished";
@@ -297,6 +308,10 @@ textarea.addEventListener("input", (e) => {
     startTest();
   }
   renderSnippet(textarea.value);
+
+  if (testActive && charTimeline.length > 0) {
+    charTimeline[charTimeline.length - 1] = e.target.value.length;
+  }
 
   if (testActive && e.target.value === currentSnippet) {
     clearInterval(timerId);
