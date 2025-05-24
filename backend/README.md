@@ -32,8 +32,8 @@ You get this back:
 
 Get Text by ID
 Method: GET
-URL: https://turbo-turtle.onrender.com/api/text/:id
 
+URL: /api/text/:id (https://turbo-turtle.onrender.com/api/text/683047c672a8b98b54d4edc6)
 Example: GET https://turbo-turtle.onrender.com/api/text/1 — gets the text with ID 1
 
 Response:

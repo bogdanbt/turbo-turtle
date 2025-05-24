@@ -115,13 +115,15 @@ body {
   border-radius: 1rem;
   width: 100%;
   max-width: 800px;
-  min-height: 200px;
+  height: calc(1.5em * 3 + 2rem);
+  max-height: calc(1.5em * 3 + 2rem);
   resize: none;
   outline: none;
   display: block;
   margin-left: auto;
   margin-right: auto;
   white-space: pre;
+  overflow-y: auto;
 }
 
 .results-container {
