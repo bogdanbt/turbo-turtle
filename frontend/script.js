@@ -1,13 +1,3 @@
-
-const snippets = [
-  `console.log("Hello World");`,
-  `for (let i = 0; i < 10; i++) { console.log(i); }`,
-  `const sum = (a, b) => a + b;`,
-  `if (user.isLoggedIn) { showDashboard(); }`,
-  `function greet(name) { return "Hello, " + name; }`,
-  `let count = 0; while (count < 5) { count++; }`
-];
-
 let currentSnippet = "";
 let timeLeft = 60;
 let timerId = null;
@@ -28,7 +18,8 @@ snippetBox.style.fontFamily = "'Roboto Mono', monospace";
 snippetBox.style.fontSize = "1rem";
 snippetBox.style.lineHeight = "1.5";
 snippetBox.style.color = "#eee";
-
+snippetBox.style.maxHeight = "calc(1.5em * 10 + 2rem)";
+snippetBox.style.overflowY = "hidden";
 document.body.querySelector(".panel").insertBefore(snippetBox, document.querySelector(".typing-input"));
 
 const textarea = document.querySelector(".typing-input");
@@ -39,22 +30,52 @@ const accuracyDisplay = document.querySelectorAll(".stat-box .stat-value")[1];
 const consistencyDisplay = document.querySelectorAll(".stat-box .stat-value")[2];
 
 function loadNewSnippet() {
-  currentSnippet = snippets[Math.floor(Math.random() * snippets.length)];
-  renderSnippet("");
-  textarea.value = "";
-}
+  const difficulties = ["beginner", "advanced"];
+const randomDifficulty = difficulties[Math.floor(Math.random() * difficulties.length)];
+
+fetch(`https://turbo-turtle.onrender.com/api/text/random?language=javascript&difficulty=${randomDifficulty}`)
+  .then(res => res.json())
+  .then(data => {
+    currentSnippet = data.content.replace(/\\n/g, '\n').replace(/\\t/g, '\t'); 
+    textarea.value = "";
+    renderSnippet("");
+  });
+  }
 
 function renderSnippet(userInput) {
   snippetBox.innerHTML = "";
 
-  for (let i = 0; i < currentSnippet.length; i++) {
-    const span = document.createElement("span");
-    span.textContent = currentSnippet[i];
+  const userLines = userInput.split('\n');
+  const currentLineIndex = userLines.length - 1;
+  
+  const visibleStartLine = Math.max(0, currentLineIndex - 2);
+  const visibleEndLine = visibleStartLine + 6;
+  
+  const codeLines = currentSnippet.split('\n');
+  const visibleContent = codeLines.slice(visibleStartLine, visibleEndLine).join('\n');
+  const visibleStartChar = codeLines.slice(0, visibleStartLine).join('\n').length + (visibleStartLine > 0 ? 1 : 0);
 
-    if (userInput[i] == null) {
+  for (let i = 0; i < visibleContent.length; i++) {
+    const actualIndex = visibleStartChar + i;
+    const char = visibleContent[i];
+    const span = document.createElement("span");
+    
+    if (char === '\n') {
+      span.innerHTML = ' ↵<br>';
+      span.style.color = '#33ca7f';
+      span.style.fontSize = '0.8em';
+    } else if (char === '\t') {
+      span.innerHTML = '<span style="color:#33ca7f;font-size:0.8em;">→</span> '; 
+    } else {
+      span.textContent = char;
+    }
+
+    if (userInput[actualIndex] == null) {
       span.style.backgroundColor = "transparent";
-      span.style.color = "#eee";
-    } else if (userInput[i] === currentSnippet[i]) {
+      if (char !== '\n' && char !== '\t') {
+        span.style.color = "#eee";
+      }
+    } else if (userInput[actualIndex] === currentSnippet[actualIndex]) {
       span.style.backgroundColor = "#4caf50";
       span.style.color = "#fff";
     } else {
@@ -117,7 +138,7 @@ function startTest() {
     timeLeft--;
     timerDisplay.textContent = timeLeft;
     
-    // Gerçek geçen süreyi hesapla
+   
     const elapsedSeconds = Math.floor((Date.now() - testStartTime) / 1000);
     charTimeline[elapsedSeconds] = textarea.value.length;
 
@@ -316,6 +337,18 @@ textarea.addEventListener("input", (e) => {
   if (testActive && e.target.value === currentSnippet) {
     clearInterval(timerId);
     endTest();
+  }
+});
+
+textarea.addEventListener('keydown', function(e) {
+  if (e.key === 'Tab') {
+    e.preventDefault();
+
+    const start = this.selectionStart;
+    const end = this.selectionEnd;
+
+    this.value = this.value.substring(0, start) + "\t" + this.value.substring(end);
+    this.selectionStart = this.selectionEnd = start + 1;
   }
 });
 
