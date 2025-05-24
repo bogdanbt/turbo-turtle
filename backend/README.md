@@ -9,10 +9,11 @@ This API is used to:
     -Get texts randomly
     -Delete texts
 
-Add a New Text
+---
 
+Add a New Text
 Method: POST
-URL: /api/text
+URL: https://turbo-turtle.onrender.com/api/text
 Send this in the body:
 {
 "content": "for (let i = 0; i < 5; i++) { console.log(i); }",
@@ -27,11 +28,13 @@ You get this back:
 "id": 1
 }
 
+---
+
 Get Text by ID
 Method: GET
-URL: /api/text/:id (https://turbo-turtle.onrender.com/api/text/683047c672a8b98b54d4edc6)
 
-Example: GET /api/text/1 — gets the text with ID 1
+URL: /api/text/:id (https://turbo-turtle.onrender.com/api/text/683047c672a8b98b54d4edc6)
+Example: GET https://turbo-turtle.onrender.com/api/text/1 — gets the text with ID 1
 
 Response:
 {
@@ -42,12 +45,14 @@ Response:
 "recommended_time": 60,
 "title": "JS For Loop"
 }
+
+---
 
 Get Random Text
 Method: GET
-URL: /api/text/random?language=...&difficulty=...
+URL: https://turbo-turtle.onrender.com/api/text/random?language=...&difficulty=...
 
-Example: GET /api/text/random?language=javascript&difficulty=beginner
+Example: GET https://turbo-turtle.onrender.com/api/text/random?language=javascript&difficulty=beginner
 Response:
 {
 "id": 1,
@@ -58,9 +63,11 @@ Response:
 "title": "JS For Loop"
 }
 
+---
+
 Delete Text by ID
 Method: DELETE
-URL: /api/text/:id
+URL: https://turbo-turtle.onrender.com/api/text/:id
 
 This removes a text forever from the database.
 Example: DELETE /api/text/1
@@ -68,4 +75,55 @@ Example: DELETE /api/text/1
 Response:
 {
 "success": true
+}
+
+---
+
+Register a New User
+Method: POST
+URL: https://turbo-turtle.onrender.com/api/auth/register
+
+Body:
+{
+"username": "testuser",
+"email": "test@example.com",
+"password": "123456"
+}
+
+Response:
+{
+"id": 1,
+"message": "User registered"
+}
+
+---
+
+Login
+
+Method: POST
+URL: https://turbo-turtle.onrender.com/api/auth/login
+
+Body:
+{
+"email": "test@example.com",
+"password": "123456"
+}
+Response:
+{
+"token": "your_jwt_token_here"
+}
+
+---
+
+Get Current User Profile
+Method: GET
+URL: https://turbo-turtle.onrender.com/api/auth/me
+
+Header:
+Authorization: Bearer your_token_here
+Response:
+{
+"id": 1,
+"username": "testuser",
+"email": "test@example.com"
 }
