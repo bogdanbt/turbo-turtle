@@ -10,4 +10,7 @@ router.post("/login", authController.login);
 
 router.get("/me", auth, authController.getMe);
 
+router.post("/result", auth, authController.saveResult);
+router.get("/stats", auth, authController.getStats);
+
 module.exports = router;
