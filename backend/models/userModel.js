@@ -32,6 +32,6 @@ exports.addUserResult = async (userId, result) => {
 
 exports.getUserStats = async (userId) => {
   return await User.findById(userId).select(
-    "username results totalTimeTyping testsCompleted"
+    "username email results totalTimeTyping testsCompleted"
   );
 };

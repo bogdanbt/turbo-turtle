@@ -115,9 +115,42 @@ Response:
 
 ---
 
-Get Current User Profile
+Save Typing Test Result
+Method: POST
+URL: https://turbo-turtle.onrender.com/api/auth/result
+
+Headers:
+Authorization: Bearer your_token_here
+Content-Type: application/json
+Body:
+{
+"challengeName": "TurboTurtle #4",
+"timeTyping": 60,
+"cpm": 120,
+"accuracy": 96,
+"consistency": 28
+}
+
+Response:
+{
+"message": "Result saved",
+"results": [
+{
+"date": "2025-05-26",
+"challengeName": "TurboTurtle #4",
+"timeTyping": 60,
+"cpm": 120,
+"accuracy": 96,
+"consistency": 28
+}
+]
+}
+
+---
+
+Get Current User Profile and Get Typing Stats
 Method: GET
-URL: https://turbo-turtle.onrender.com/api/auth/me
+URL: https://turbo-turtle.onrender.com/api/auth/stats
 
 Header:
 Authorization: Bearer your_token_here
@@ -126,4 +159,16 @@ Response:
 "id": 1,
 "username": "testuser",
 "email": "test@example.com"
+"results": [
+{
+"date": "2025-05-26",
+"challengeName": "TurboTurtle #4",
+"timeTyping": 60,
+"cpm": 120,
+"accuracy": 96,
+"consistency": 28
+}
+],
+"totalTimeTyping": 60,
+"testsCompleted": 1
 }
