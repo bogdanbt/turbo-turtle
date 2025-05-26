@@ -24,6 +24,17 @@ body {
   height: 30px;
 }
 
+.profile-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+  color: #565554;
+  text-decoration: none;
+  margin: 20px;
+}
+
+
 .panel {
   text-align: center;
   padding: 2rem 1rem;
