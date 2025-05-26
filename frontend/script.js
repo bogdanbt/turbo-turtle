@@ -169,12 +169,18 @@ function endTest() {
 
   const consistency = calculateConsistency(typed);
   
-  let cpm = 0;
-  if(elapsedTime>0){
-    cpm = Math.round((typed.length / elapsedTime) * 60);
+  function countWords(text) {
+    const words = text.match(/[a-zA-Z0-9_]+/g);
+    return words ? words.length : 0;
   }
 
-  charMinDisplay.textContent = cpm;
+  let wpm = 0;
+  if(elapsedTime > 0) {
+    const wordCount = countWords(typed);
+    wpm = Math.round((wordCount / elapsedTime) * 60);
+  }
+
+  charMinDisplay.textContent = wpm;
   accuracyDisplay.textContent = accuracy;
   consistencyDisplay.textContent = consistency;
   timerDisplay.textContent = "Finished";
