@@ -34,7 +34,7 @@ body {
 }
 
 .logo {
-  height: 40px;
+  height: 30px;
   width: auto;
 }
 
@@ -50,7 +50,7 @@ body {
 }
 
 .form-section {
-  display: none; 
+  display: none;
   flex-direction: column;
   gap: 0.75rem;
   flex: 1;

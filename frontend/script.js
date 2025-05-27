@@ -137,6 +137,9 @@ function prepareTest(duration) {
   resultsContainer.style.display = "none";
   textarea.style.display = "block";
   snippetBox.style.display = "block";
+
+  document.querySelector(".timer-container").style.display = "flex";
+  document.querySelector(".metrics-container").style.display = "none";
 }
 
 let testStartTime = null;
@@ -205,6 +208,9 @@ function endTest() {
 
   textarea.style.display = "none";
   snippetBox.style.display = "none";
+
+  document.querySelector(".timer-container").style.display = "none";
+  document.querySelector(".metrics-container").style.display = "flex";
 
   const resultsContainer = document.querySelector(".results-container");
   if (resultsContainer) {

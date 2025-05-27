@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,9 +9,12 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="assets/turtle_logo.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/turtle_logo.svg" type="image/svg+xml" />
 
     <title>TurboTurtle</title>
   </head>
@@ -24,11 +26,11 @@
     />
     <a href="login.html" class="profile-icon">
       <i class="fa-solid fa-user"></i>
-    </a>    
+    </a>
     <section class="panel">
       <h1>Test your typing skills</h1>
 
-      <div class="stats">
+      <div class="timer-container">
         <div class="timer">
           <span class="time">Select time</span>
         </div>
@@ -37,7 +39,9 @@
           <button class="timer-btn" data-time="30">30s</button>
           <button class="timer-btn" data-time="60">60s</button>
         </div>
+      </div>
 
+      <div class="metrics-container">
         <div class="stat-box">
           <span class="stat-value">0</span>
           <span class="stat-label">Wpm</span>
@@ -58,12 +62,11 @@
       ></textarea>
     </section>
 
-    <div class="results-container" style="display: none;">
+    <div class="results-container" style="display: none">
       <div class="chart-container">
         <canvas id="typingChart" width="350" height="350"></canvas>
       </div>
-      <div class="feedback-box">
-      </div>
+      <div class="feedback-box"></div>
     </div>
 
     <footer class="footer-guides">
