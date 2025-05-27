@@ -1,51 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login | TurboTurtle</title>
-  <link rel="stylesheet" href="login.css" />
-  <link rel="icon" href="assets/turtle_logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body>
-  <header class="header">
-    <img src="assets/turbo_turtle_logo.svg" alt="TurboTurtle Logo" class="logo"/>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | TurboTurtle</title>
+    <link rel="stylesheet" href="login.css" />
+    <link rel="icon" href="assets/turtle_logo.svg" type="image/svg+xml" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <img
+        src="assets/turbo_turtle_logo.svg"
+        alt="Turbo Turtle Logo"
+        class="logo"
+      />
 
-  <div class="login-wrapper">
-    
-    <!-- Register Form  -->
-    <div id="register-form" class="form-section" style="display: none;">
-      <h3>register</h3>
-      <input type="text" placeholder="username" />
-      <input type="email" placeholder="email" />
-      <input type="password" placeholder="password" />
-      <button class="btn btn-register">
-        <span>sign up</span>
-      </button>
-      <p style="text-align:center; font-size: 0.9rem;">Already have an account?
-        <a href="#" onclick="toggleForm('login')">Login</a>
-      </p>
-    </div>
-
-     <!-- Login Form  -->
-    <div id="login-form" class="form-section">
-      <h3>login</h3>
-      <input type="text" placeholder="email" />
-      <input type="password" placeholder="password" />
-      <button class="btn btn-login" onclick="window.location.href='dashboard.html'">sign in</button>
-      <span class="or-text">or</span>
-      <div class="social-buttons">
-        <button class="btn social"><i class="fa-brands fa-google"></i> Sign in with Google</button>
+      <div class="nav-right">
+        <a href="index.html" class="keyboard-icon">
+          <i class="fa-solid fa-keyboard"></i>
+        </a>
+        <a href="login.html" class="profile-icon">
+          <i class="fa-solid fa-user"></i>
+        </a>
       </div>
-      <p style="text-align:center; font-size: 0.9rem;">Don't have an account?
-        <a href="#" onclick="toggleForm('register')">Register</a>
-      </p>
+    </header>
+
+    <div class="login-wrapper">
+      <!-- Register Form  -->
+      <div id="register-form" class="form-section" style="display: none">
+        <h3>register</h3>
+        <input type="text" placeholder="username" />
+        <input type="email" placeholder="email" />
+        <input type="password" placeholder="password" />
+        <button class="btn btn-register">
+          <span>sign up</span>
+        </button>
+        <p style="text-align: center; font-size: 0.9rem">
+          Already have an account?
+          <a href="#" onclick="toggleForm('login')">Login</a>
+        </p>
+      </div>
+
+      <!-- Login Form  -->
+      <div id="login-form" class="form-section">
+        <h3>login</h3>
+        <input type="text" placeholder="email" />
+        <input type="password" placeholder="password" />
+        <button
+          class="btn btn-login"
+          onclick="window.location.href='dashboard.html'"
+        >
+          sign in
+        </button>
+        <span class="or-text">or</span>
+        <div class="social-buttons">
+          <button class="btn social">
+            <i class="fa-brands fa-google"></i> Sign in with Google
+          </button>
+        </div>
+        <p style="text-align: center; font-size: 0.9rem">
+          Don't have an account?
+          <a href="#" onclick="toggleForm('register')">Register</a>
+        </p>
+      </div>
     </div>
 
-  </div>
-
-  <script src="login.js"></script>
-</body>
+    <script src="login.js"></script>
+  </body>
 </html>

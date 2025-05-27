@@ -9,7 +9,7 @@
 
 body {
   margin: 0;
-  padding: 2rem;
+  padding: 1rem;
   box-sizing: border-box;
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -17,21 +17,33 @@ body {
   font-family: var(--body-font);
 }
 
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
 .logo {
-  display: block;
-  margin: 0 auto;
   width: auto;
   height: 30px;
 }
 
-.profile-icon {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+.nav-right {
+  display: flex;
+  gap: 2rem;
+}
+
+.keyboard-icon {
   font-size: 1.5rem;
-  color: #565554;
+  color: var(--secondary-color);
   text-decoration: none;
-  margin: 20px;
+}
+
+.profile-icon {
+  font-size: 1.5rem;
+  color: var(--secondary-color);
+  text-decoration: none;
 }
 
 .panel {

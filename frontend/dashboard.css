@@ -1,15 +1,16 @@
-
 :root {
   --bg: #333437;
   --card-bg: #565554;
   --text: #f7ebe8;
   --accent: #33ca7f;
-  --font: 'Roboto Mono', monospace;
-  --heading-font: 'Montserrat', sans-serif;
+  --font: "Roboto Mono", monospace;
+  --heading-font: "Montserrat", sans-serif;
 }
 
 body {
   margin: 0;
+  padding: 1rem;
+  box-sizing: border-box;
   background: var(--bg);
   color: var(--text);
   font-family: var(--font);
@@ -23,14 +24,25 @@ body {
 }
 
 .logo {
-  height: 40px;
+  width: auto;
+  height: 30px;
 }
 
-.icons i {
-  color: var(--text);
-  font-size: 1.2rem;
-  margin-left: 1rem;
-  cursor: pointer;
+.nav-right {
+  display: flex;
+  gap: 2rem;
+}
+
+.keyboard-icon {
+  font-size: 1.5rem;
+  color: var(--card-bg);
+  text-decoration: none;
+}
+
+.profile-icon {
+  font-size: 1.5rem;
+  color: var(--card-bg);
+  text-decoration: none;
 }
 
 .dashboard {
