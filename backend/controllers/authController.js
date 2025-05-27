@@ -36,7 +36,7 @@ exports.login = async (req, res) => {
     if (!match)
       return res.status(400).json({ error: "Invalid email or password" });
 
-    const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: "2h" });
+    const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: "24h" });
 
     res.json({ token });
   } catch (err) {
@@ -52,5 +52,28 @@ exports.getMe = async (req, res) => {
     res.json(user);
   } catch (err) {
     res.status(500).json({ error: "Failed to load profile" });
+  }
+};
+
+exports.saveResult = async (req, res) => {
+  try {
+    const result = req.body;
+    const updatedUser = await userModel.addUserResult(req.user.id, result);
+    res.json({ message: "Result saved", results: updatedUser.results });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Failed to save result", error: err.message });
+  }
+};
+
+exports.getStats = async (req, res) => {
+  try {
+    const stats = await userModel.getUserStats(req.user.id);
+    res.json(stats);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Failed to fetch stats", error: err.message });
   }
 };

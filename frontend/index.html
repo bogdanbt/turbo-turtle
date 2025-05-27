@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,21 +9,62 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="assets/turbo_turtle_logo.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/turtle_logo.svg" type="image/svg+xml" />
 
     <title>TurboTurtle</title>
   </head>
   <body>
-    <img
-      src="assets/turbo_turtle_logo.svg"
-      alt="Turbo Turtle Logo"
-      class="logo"
-    />
+    <nav>
+      <img
+        src="assets/turbo_turtle_logo.svg"
+        alt="Turbo Turtle Logo"
+        class="logo"
+      />
+
+      <div class="nav-right">
+        <div class="info-container">
+          <i class="fas fa-info-circle"></i>
+          <div class="tooltip">
+            <strong>Welcome to TurboTurtle!</strong><br /><br />
+            Here’s a quick guide to how we measure your typing test results:<br /><br />
+
+            <strong>Words per Minute (WPM):</strong> measures how fast you type.
+            It's calculated by dividing the number of words typed (sections with
+            letters, numbers, or underscores) by the time taken in seconds, then
+            multiplying by 60. This helps you track your typing speed over
+            time.<br /><br />
+
+            <strong>Accuracy (%):</strong> This tells you the percentage of
+            characters you typed correctly compared to the typed text. The
+            closer to 100%, the fewer errors you made!<br /><br />
+
+            <strong>Consistency:</strong> This measures how steady your typing
+            speed is throughout the test. A higher consistency means you
+            maintained an even pace without big speed ups or slow downs.<br /><br />
+
+            Keep practicing to improve your speed, accuracy and consistency.
+            Happy typing!
+          </div>
+        </div>
+
+        <a href="index.html" class="keyboard-icon">
+          <i class="fa-solid fa-keyboard"></i>
+        </a>
+        <a href="login.html" class="profile-icon">
+          <i class="fa-solid fa-user"></i>
+        </a>
+      </div>
+    </nav>
+
     <section class="panel">
       <h1>Test your typing skills</h1>
 
-      <div class="stats">
+      <div class="timer-container">
         <div class="timer">
           <span class="time">Select time</span>
         </div>
@@ -33,18 +73,20 @@
           <button class="timer-btn" data-time="30">30s</button>
           <button class="timer-btn" data-time="60">60s</button>
         </div>
+      </div>
 
+      <div class="metrics-container">
         <div class="stat-box">
           <span class="stat-value">0</span>
-          <span class="stat-label">Wpm</span>
+          <span class="stat-label">wpm</span>
         </div>
         <div class="stat-box">
           <span class="stat-value">0</span>
-          <span class="stat-label">% Accuracy</span>
+          <span class="stat-label">% accuracy</span>
         </div>
         <div class="stat-box">
           <span class="stat-value">0</span>
-          <span class="stat-label">Consistency</span>
+          <span class="stat-label">consistency</span>
         </div>
       </div>
 
@@ -54,12 +96,11 @@
       ></textarea>
     </section>
 
-    <div class="results-container" style="display: none;">
+    <div class="results-container" style="display: none">
       <div class="chart-container">
         <canvas id="typingChart" width="350" height="350"></canvas>
       </div>
-      <div class="feedback-box">
-      </div>
+      <div class="feedback-box"></div>
     </div>
 
     <footer class="footer-guides">

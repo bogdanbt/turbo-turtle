@@ -1,0 +1,103 @@
+:root {
+  --bg: #333437;
+  --card-bg: #565554;
+  --text: #f7ebe8;
+  --accent: #33ca7f;
+  --font: "Roboto Mono", monospace;
+  --heading-font: "Montserrat", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 1rem;
+  box-sizing: border-box;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.logo {
+  width: auto;
+  height: 30px;
+}
+
+.nav-right {
+  display: flex;
+  gap: 2rem;
+}
+
+.keyboard-icon {
+  font-size: 1.5rem;
+  color: var(--card-bg);
+  text-decoration: none;
+}
+
+.profile-icon {
+  font-size: 1.5rem;
+  color: var(--card-bg);
+  text-decoration: none;
+}
+
+.dashboard {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.username {
+  font-family: var(--heading-font);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  flex: 1;
+  text-align: center;
+}
+
+.card .value {
+  font-size: 2rem;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.card .label {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.history h2 {
+  font-family: var(--heading-font);
+  margin-bottom: 1.5rem;
+}
+
+.result-group {
+  margin-bottom: 2rem;
+}
+
+.result-group .date {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.result-cards {
+  display: flex;
+  gap: 1rem;
+}

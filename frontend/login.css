@@ -1,0 +1,143 @@
+:root {
+  --bg: #333437;
+  --input-bg: #2a2a2a;
+  --text: #f7ebe8;
+  --primary: #33ca7f;
+  --secondary: #565554;
+  --heading-font: "Montserrat", sans-serif;
+  --font: "Roboto Mono", monospace;
+}
+
+body {
+  margin: 0;
+  padding: 1rem;
+  box-sizing: border-box;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.logo {
+  width: auto;
+  height: 30px;
+}
+
+.nav-right {
+  display: flex;
+  gap: 2rem;
+}
+
+.keyboard-icon {
+  font-size: 1.5rem;
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+.profile-icon {
+  font-size: 1.5rem;
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+.login-wrapper {
+  display: flex;
+  gap: 4rem;
+  padding: 2rem;
+  max-width: 1000px;
+  width: 100%;
+  margin: 60px auto 0;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.form-section {
+  display: none;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+  max-width: 400px;
+}
+
+.form-section h3 {
+  font-size: 1.2rem;
+  color: var(--text);
+  text-transform: lowercase;
+  margin-bottom: 0.5rem;
+  font-family: var(--heading-font);
+  font-weight: 700;
+}
+
+input {
+  background: var(--input-bg);
+  border: 2px solid var(--secondary);
+  padding: 0.75rem;
+  border-radius: 5px;
+  color: var(--text);
+  font-size: 1rem;
+  font-family: var(--font);
+}
+
+.btn {
+  background: var(--primary);
+  color: #333;
+  font-weight: bold;
+  padding: 0.75rem;
+  border: 2px solid var(--primary);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--heading-font);
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background: var(--secondary);
+  color: var(--text);
+  border-color: var(--primary);
+}
+
+.btn.social {
+  background: #333;
+  color: var(--text);
+  width: 100%;
+  font-family: var(--heading-font);
+  border: 2px solid var(--primary);
+  transition: all 0.2s ease;
+}
+
+.btn.social:hover {
+  background: var(--primary);
+  color: #333;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.or-text {
+  text-align: center;
+  margin: 0.25rem 0;
+  color: #888;
+  font-size: 0.85rem;
+}
+
+#login-form,
+#register-form {
+  display: flex;
+}
+
+.form-section a {
+  color: var(--primary);
+}

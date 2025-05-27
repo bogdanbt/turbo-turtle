@@ -1,40 +1,3 @@
-// const db = require("../db/database");
-
-// exports.createUser = ({ username, email, password }) => {
-//   return new Promise((resolve, reject) => {
-//     db.run(
-//       `INSERT INTO users (username, email, password) VALUES (?, ?, ?)`,
-//       [username, email, password],
-//       function (err) {
-//         if (err) return reject(err);
-//         resolve(this.lastID);
-//       }
-//     );
-//   });
-// };
-// //for login
-// exports.findUserByEmail = (email) => {
-//   return new Promise((resolve, reject) => {
-//     db.get(`SELECT * FROM users WHERE email = ?`, [email], (err, row) => {
-//       if (err) return reject(err);
-//       resolve(row);
-//     });
-//   });
-// };
-// //for page myProfile
-// exports.findUserById = (id) => {
-//   return new Promise((resolve, reject) => {
-//     db.get(
-//       `SELECT id, username, email FROM users WHERE id = ?`,
-//       [id],
-//       (err, row) => {
-//         if (err) return reject(err);
-//         resolve(row);
-//       }
-//     );
-//   });
-// };
-
 const User = require("./User");
 
 exports.createUser = async ({ username, email, password }) => {
@@ -49,4 +12,26 @@ exports.findUserByEmail = async (email) => {
 
 exports.findUserById = async (id) => {
   return await User.findById(id).select("id username email");
+};
+
+exports.addUserResult = async (userId, result) => {
+  const user = await User.findById(userId);
+  if (!user) throw new Error("User not found");
+
+  user.results.push({
+    ...result,
+    date: new Date().toISOString().split("T")[0],
+  });
+
+  user.totalTimeTyping = (user.totalTimeTyping || 0) + result.timeTyping;
+  user.testsCompleted = (user.testsCompleted || 0) + 1;
+
+  await user.save();
+  return user;
+};
+
+exports.getUserStats = async (userId) => {
+  return await User.findById(userId).select(
+    "username email results totalTimeTyping testsCompleted"
+  );
 };
