@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login | TurboTurtle</title>
     <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="spinner.css" />
     <link rel="icon" href="assets/turtle_logo.svg" type="image/svg+xml" />
     <link
       rel="stylesheet"
@@ -28,15 +29,17 @@
         </a>
       </div>
     </header>
-
+    <!-- Spinner -->
+    <div class="spinner" id="spinner" style="display: none"></div>
     <div class="login-wrapper">
       <!-- Register Form  -->
       <div id="register-form" class="form-section" style="display: none">
         <h3>register</h3>
-        <input type="text" placeholder="username" />
-        <input type="email" placeholder="email" />
-        <input type="password" placeholder="password" />
-        <button class="btn btn-register">
+        <input type="text" id="regUsername" placeholder="username" />
+        <input type="email" id="regEmail" placeholder="email" />
+        <input type="password" id="regPassword" placeholder="password" />
+        <p id="regMessage" style="text-align: center; font-size: 0.9rem"></p>
+        <button class="btn btn-register" onclick="register()">
           <span>sign up</span>
         </button>
         <p style="text-align: center; font-size: 0.9rem">
@@ -48,14 +51,10 @@
       <!-- Login Form  -->
       <div id="login-form" class="form-section">
         <h3>login</h3>
-        <input type="text" placeholder="email" />
-        <input type="password" placeholder="password" />
-        <button
-          class="btn btn-login"
-          onclick="window.location.href='dashboard.html'"
-        >
-          sign in
-        </button>
+        <input type="email" id="loginEmail" placeholder="email" />
+        <input type="password" id="loginPassword" placeholder="password" />
+        <p id="loginMessage" style="text-align: center; font-size: 0.9rem"></p>
+        <button class="btn btn-login" onclick="login()">sign in</button>
         <span class="or-text">or</span>
         <div class="social-buttons">
           <button class="btn social">
@@ -70,5 +69,7 @@
     </div>
 
     <script src="login.js"></script>
+    <script src="loginAPI.js"></script>
+    <script src="registerAPI.js"></script>
   </body>
 </html>
