@@ -7,9 +7,8 @@ let charTimeline = [];
 
 const snippetBox = document.createElement("div");
 snippetBox.className = "snippet-box";
-// snippetBox.style.whiteSpace = "pre-wrap";
-snippetBox.style.whiteSpace = "pre"; //change
-snippetBox.style.textAlign = "left"; //add
+snippetBox.style.whiteSpace = "pre"; 
+snippetBox.style.textAlign = "left"; 
 snippetBox.style.margin = "2rem auto";
 snippetBox.style.maxWidth = "800px";
 snippetBox.style.backgroundColor = "#1e1e1e";
@@ -54,42 +53,37 @@ function loadNewSnippet() {
 function renderSnippet(userInput) {
   snippetBox.innerHTML = "";
 
-  const userLines = userInput.split("\n");
+  const userLines = userInput.split('\n');
   const currentLineIndex = userLines.length - 1;
-
+  
   const visibleStartLine = Math.max(0, currentLineIndex - 2);
-  const visibleEndLine = visibleStartLine + 6;
-
-  const codeLines = currentSnippet.split("\n");
-  const visibleContent = codeLines
-    .slice(visibleStartLine, visibleEndLine)
-    .join("\n");
-  const visibleStartChar =
-    codeLines.slice(0, visibleStartLine).join("\n").length +
-    (visibleStartLine > 0 ? 1 : 0);
+  const visibleEndLine = visibleStartLine + 4;
+  
+  const codeLines = currentSnippet.split('\n');
+  const visibleContent = codeLines.slice(visibleStartLine, visibleEndLine).join('\n');
+  const visibleStartChar = codeLines.slice(0, visibleStartLine).join('\n').length + (visibleStartLine > 0 ? 1 : 0);
 
   for (let i = 0; i < visibleContent.length; i++) {
     const actualIndex = visibleStartChar + i;
     const char = visibleContent[i];
     const span = document.createElement("span");
+    
+    if (char === '\n') {
+      span.innerHTML = ' ↵<br>';
+      span.style.color = '#33ca7f';
+      span.style.fontSize = '0.8em';
+    } else if (char === '\t') {
+      span.innerHTML = '<span style="color:#33ca7f;font-size:0.8em;">→ </span>';
+    } else {
+      span.textContent = char;
+    }
 
-    //     if (char === "\n") {
-    //       span.innerHTML = " ↵<br>";
-    //       span.style.color = "#33ca7f";
-    //       span.style.fontSize = "0.8em";
-    //     } else if (char === "\t") {
-    //       span.innerHTML = '<span style="color:#33ca7f;font-size:0.8em;">→</span> ';
-    //     } else {
-    //       span.textContent = char;
-    //     }
-    span.textContent = char;
-
+    
     if (userInput[actualIndex] == null) {
       span.style.backgroundColor = "transparent";
-      //       if (char !== "\n" && char !== "\t") {
-      //         span.style.color = "#eee";
-      //       }
-      span.style.color = "#eee";
+      if (char !== '\n' && char !== '\t') {
+        span.style.color = "#eee";
+      }
     } else if (userInput[actualIndex] === currentSnippet[actualIndex]) {
       span.style.backgroundColor = "#4caf50";
       span.style.color = "#fff";
@@ -101,7 +95,6 @@ function renderSnippet(userInput) {
     snippetBox.appendChild(span);
   }
 }
-
 function calculateConsistency(userInput) {
   let maxCorrectStreak = 0;
   let currentStreak = 0;
