@@ -53,7 +53,7 @@ async function fetchStats() {
 
           const fields = [
             { label: "time typing", value: `${entry.timeTyping ?? 0}s` },
-            { label: "CPM", value: entry.cpm ?? "0" },
+            { label: "wpm", value: entry.cpm ?? "0" },
             {
               label: "accuracy",
               value: entry.accuracy !== undefined ? `${entry.accuracy}%` : "0%",
