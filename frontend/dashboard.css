@@ -39,11 +39,18 @@ body {
   text-decoration: none;
 }
 
-.profile-icon {
+.logout-icon {
   font-size: 1.5rem;
   color: var(--card-bg);
   text-decoration: none;
 }
+
+.logout-icon:hover {
+  color: #33ca7f;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 
 .dashboard {
   padding: 2rem;
