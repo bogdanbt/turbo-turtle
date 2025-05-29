@@ -25,7 +25,9 @@ async function fetchStats() {
     );
 
     const data = await res.json();
-
+    console.log(data);
+    document.getElementById("username").textContent =
+      data.username ?? "username";
     document.getElementById("total-tests").textContent =
       data.testsCompleted ?? 0;
     document.getElementById("total-time").textContent = formatTime(
