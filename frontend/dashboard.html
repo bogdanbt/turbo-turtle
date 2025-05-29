@@ -38,62 +38,25 @@
 
       <section class="stats">
         <div class="card">
-          <p class="value">0</p>
+          <p class="value" id="total-tests">0</p>
           <p class="label">tests completed</p>
         </div>
         <div class="card">
-          <p class="value">00:00:00</p>
+          <p class="value" id="total-time">00:00:00</p>
           <p class="label">time typing</p>
         </div>
       </section>
 
       <section class="history">
         <h2>Previous Results</h2>
-
-        <div class="result-group">
-          <p class="date">22.05.2025</p>
-          <div class="result-cards">
-            <div class="card">
-              <p class="value">30s</p>
-              <p class="label">time typing</p>
-            </div>
-            <div class="card">
-              <p class="value">105</p>
-              <p class="label">CPM</p>
-            </div>
-            <div class="card">
-              <p class="value">97%</p>
-              <p class="label">accuracy</p>
-            </div>
-            <div class="card">
-              <p class="value">28</p>
-              <p class="label">consistency</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="result-group">
-          <p class="date">19.05.2025</p>
-          <div class="result-cards">
-            <div class="card">
-              <p class="value">30s</p>
-              <p class="label">time typing</p>
-            </div>
-            <div class="card">
-              <p class="value">102</p>
-              <p class="label">CPM</p>
-            </div>
-            <div class="card">
-              <p class="value">95%</p>
-              <p class="label">accuracy</p>
-            </div>
-            <div class="card">
-              <p class="value">26</p>
-              <p class="label">consistency</p>
-            </div>
-          </div>
-        </div>
+        <div id="history-container"></div>
+        <!-- ⬅ Контейнер, куда динамически добавим карточки -->
       </section>
     </main>
+
+    <script src="getProfile.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", fetchStats);
+    </script>
   </body>
 </html>

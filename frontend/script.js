@@ -7,8 +7,8 @@ let charTimeline = [];
 
 const snippetBox = document.createElement("div");
 snippetBox.className = "snippet-box";
-snippetBox.style.whiteSpace = "pre"; 
-snippetBox.style.textAlign = "left"; 
+snippetBox.style.whiteSpace = "pre";
+snippetBox.style.textAlign = "left";
 snippetBox.style.margin = "2rem auto";
 snippetBox.style.maxWidth = "800px";
 snippetBox.style.backgroundColor = "#1e1e1e";
@@ -53,35 +53,38 @@ function loadNewSnippet() {
 function renderSnippet(userInput) {
   snippetBox.innerHTML = "";
 
-  const userLines = userInput.split('\n');
+  const userLines = userInput.split("\n");
   const currentLineIndex = userLines.length - 1;
-  
+
   const visibleStartLine = Math.max(0, currentLineIndex - 2);
   const visibleEndLine = visibleStartLine + 4;
-  
-  const codeLines = currentSnippet.split('\n');
-  const visibleContent = codeLines.slice(visibleStartLine, visibleEndLine).join('\n');
-  const visibleStartChar = codeLines.slice(0, visibleStartLine).join('\n').length + (visibleStartLine > 0 ? 1 : 0);
+
+  const codeLines = currentSnippet.split("\n");
+  const visibleContent = codeLines
+    .slice(visibleStartLine, visibleEndLine)
+    .join("\n");
+  const visibleStartChar =
+    codeLines.slice(0, visibleStartLine).join("\n").length +
+    (visibleStartLine > 0 ? 1 : 0);
 
   for (let i = 0; i < visibleContent.length; i++) {
     const actualIndex = visibleStartChar + i;
     const char = visibleContent[i];
     const span = document.createElement("span");
-    
-    if (char === '\n') {
-      span.innerHTML = ' ↵<br>';
-      span.style.color = '#33ca7f';
-      span.style.fontSize = '0.8em';
-    } else if (char === '\t') {
+
+    if (char === "\n") {
+      span.innerHTML = " ↵<br>";
+      span.style.color = "#33ca7f";
+      span.style.fontSize = "0.8em";
+    } else if (char === "\t") {
       span.innerHTML = '<span style="color:#33ca7f;font-size:0.8em;">→ </span>';
     } else {
       span.textContent = char;
     }
 
-    
     if (userInput[actualIndex] == null) {
       span.style.backgroundColor = "transparent";
-      if (char !== '\n' && char !== '\t') {
+      if (char !== "\n" && char !== "\t") {
         span.style.color = "#eee";
       }
     } else if (userInput[actualIndex] === currentSnippet[actualIndex]) {
@@ -212,6 +215,32 @@ function endTest() {
       createChart(charPerSec);
       showFeedback(charPerSec);
     }, 200);
+  }
+  const token = localStorage.getItem("token");
+  if (token) {
+    const resultData = {
+      challengeName: "TurboTurtle Challenge",
+      timeTyping: selectedTime,
+      cpm: wpm,
+      accuracy: accuracy,
+      consistency: consistency,
+    };
+
+    fetch("https://turbo-turtle.onrender.com/api/auth/result", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(resultData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Result saved:", data);
+      })
+      .catch((err) => {
+        console.error("Error saving result:", err.message);
+      });
   }
 }
 
