@@ -20,10 +20,9 @@
         class="logo"
       />
     </header>
-    <!-- Spinner -->
-    <div class="spinner" id="spinner" style="display: none"></div>
+
     <div class="login-wrapper">
-      <!-- Register Form  -->
+      <!-- Register Form -->
       <div id="register-form" class="form-section" style="display: none">
         <h3>register</h3>
         <input type="text" id="regUsername" placeholder="username" />
@@ -39,11 +38,17 @@
         </p>
       </div>
 
-      <!-- Login Form  -->
+      <!-- Login Form -->
       <div id="login-form" class="form-section">
         <h3>login</h3>
         <input type="email" id="loginEmail" placeholder="email" />
         <input type="password" id="loginPassword" placeholder="password" />
+        
+        <!-- Spinner (orta hizalı) -->
+        <div class="spinner-container">
+          <div class="spinner" id="spinner" style="display: none"></div>
+        </div>
+
         <p id="loginMessage" style="text-align: center; font-size: 0.9rem"></p>
         <button class="btn btn-login" onclick="login()">sign in</button>
         <span class="or-text">or</span>
