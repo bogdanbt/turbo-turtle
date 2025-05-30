@@ -408,4 +408,8 @@ textarea.addEventListener("keydown", function (e) {
   }
 });
 
+document.getElementById("restart").addEventListener("click", function(){
+  location.reload();
+});
+
 snippetBox.textContent = "";
